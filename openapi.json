@@ -1,0 +1,99 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Stock-Spotter API",
+    "description": "Real-time global inventory tracking and AI-powered trend detection API for high-demand consumer goods.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Stock-Spotter Support",
+      "url": "https://stock-spotter-f3e9-cwv50zt3j-chenghun1234-dotcoms-projects.vercel.app/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://stock-spotter-f3e9-cwv50zt3j-chenghun1234-dotcoms-projects.vercel.app",
+      "description": "Production Server"
+    }
+  ],
+  "paths": {
+    "/api/inventory": {
+      "get": {
+        "summary": "Get Global Inventory",
+        "description": "Returns a comprehensive list of all product stock and items tracked globally across South Korea, USA, and Japan.",
+        "responses": {
+          "200": {
+            "description": "A successful response containing a list of stock items.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/trends": {
+      "get": {
+        "summary": "Get Trending Items",
+        "description": "Returns only the items that have been flagged as 'trending' by the AI analysis of social data.",
+        "responses": {
+          "200": {
+            "description": "A list of trending items.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StockItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Returns the operational status of the Stock-Spotter sync engine.",
+        "responses": {
+          "200": {
+            "description": "System is healthy.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "active",
+                  "service": "Stock-Spotter Engine"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "StockItem": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "example": "KR_item_001" },
+          "name": { "type": "string", "example": "황치즈 생크림빵" },
+          "store_name": { "type": "string", "example": "GS25 강남역점" },
+          "country_code": { "type": "string", "example": "KR" },
+          "latitude": { "type": "number", "example": 37.4979 },
+          "longitude": { "type": "number", "example": 127.0276 },
+          "quantity": { "type": "integer", "example": 10 },
+          "is_trend": { "type": "boolean", "example": true },
+          "updated_at": { "type": "string", "format": "date-time", "example": "2026-04-24T21:46:46" }
+        }
+      }
+    }
+  }
+}
