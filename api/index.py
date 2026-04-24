@@ -33,19 +33,21 @@ async def get_trends():
 async def health_check():
     return {"status": "active", "service": "Stock-Spotter Engine"}
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 @app.get("/", include_in_schema=False)
 async def read_root():
     """Serves the landing page."""
-    return FileResponse("index.html")
+    return FileResponse(os.path.join(BASE_DIR, "index.html"))
 
 @app.get("/style.css", include_in_schema=False)
 async def get_style():
-    return FileResponse("style.css")
+    return FileResponse(os.path.join(BASE_DIR, "style.css"))
 
 @app.get("/hero.png", include_in_schema=False)
 async def get_hero():
-    return FileResponse("hero.png")
+    return FileResponse(os.path.join(BASE_DIR, "hero.png"))
 
 @app.get("/inventory.json", include_in_schema=False)
 async def get_inventory_json():
-    return FileResponse("inventory.json")
+    return FileResponse(os.path.join(BASE_DIR, "inventory.json"))
