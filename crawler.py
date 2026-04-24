@@ -23,18 +23,18 @@ def analyze_trend_with_local_ai(product_name, social_text, country_code):
             "model": "llama3", 
             "prompt": prompt, 
             "stream": False
-        }, timeout=10)
+        }, timeout=60)
         return "True" in response.json().get("response", "")
     except Exception as e:
         print(f"Ollama error for {country_code}: {e}")
         return False
 
 def crawl_global_inventory():
-    print(f"🚀 Starting Global Inventory Crawl... {datetime.now()}")
+    print(f"Starting Global Inventory Crawl... {datetime.now()}")
     final_data = []
     
     for country in COUNTRIES:
-        print(f"🌍 Processing data for {country}...")
+        print(f"Processing data for {country}...")
         
         # MOCKED DATA: Replace these with actual scraping logic per country
         items_by_country = {
@@ -63,7 +63,7 @@ def crawl_global_inventory():
     with open("inventory.json", "w", encoding="utf-8") as f:
         json.dump(final_data, f, ensure_ascii=False, indent=2)
     
-    print(f"✅ Global sync complete. Saved to inventory.json")
+    print(f"Global sync complete. Saved to inventory.json")
 
 if __name__ == "__main__":
     crawl_global_inventory()

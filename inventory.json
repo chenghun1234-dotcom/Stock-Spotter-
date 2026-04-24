@@ -1,0 +1,35 @@
+[
+  {
+    "id": "KR_item_001",
+    "name": "황치즈 생크림빵",
+    "store_name": "GS25 강남역점",
+    "country_code": "KR",
+    "latitude": 37.4979,
+    "longitude": 127.0276,
+    "quantity": 10,
+    "is_trend": false,
+    "updated_at": "2026-04-24T16:24:40.942834"
+  },
+  {
+    "id": "US_item_001",
+    "name": "Viral Takis",
+    "store_name": "CVS Times Square",
+    "country_code": "US",
+    "latitude": 37.4979,
+    "longitude": 127.0276,
+    "quantity": 10,
+    "is_trend": false,
+    "updated_at": "2026-04-24T16:25:02.526624"
+  },
+  {
+    "id": "JP_item_001",
+    "name": "Matcha Mochi",
+    "store_name": "Lawson Shinjuku",
+    "country_code": "JP",
+    "latitude": 37.4979,
+    "longitude": 127.0276,
+    "quantity": 10,
+    "is_trend": true,
+    "updated_at": "2026-04-24T16:25:13.403343"
+  }
+]

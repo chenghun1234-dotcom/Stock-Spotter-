@@ -37,6 +37,12 @@ class _InventoryFeedScreenState extends State<InventoryFeedScreen> {
     if (mounted) {
       setState(() {
         _items = newItems;
+        // Sort: Trends first, then by quantity
+        _items.sort((a, b) {
+          if (a.isTrend && !b.isTrend) return -1;
+          if (!a.isTrend && b.isTrend) return 1;
+          return b.quantity.compareTo(a.quantity);
+        });
         _applyFilter(_searchQuery);
         _isLoading = false;
       });
@@ -162,7 +168,7 @@ class _InventoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Color statusColor;
     String statusText;
-    bool isTrend = item.name.contains('Hwang-cheese'); // Context-aware trend logic
+    bool isTrend = item.isTrend;
 
     switch (item.status) {
       case StockStatus.high:
