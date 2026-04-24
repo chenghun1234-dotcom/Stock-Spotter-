@@ -1,0 +1,25 @@
+name: Global Food Data Auto Crawler (Local AI)
+
+on:
+  schedule:
+    - cron: '20 2 * * *'  # KST 11:20 AM
+    - cron: '0 11 * * *'  # KST 08:00 PM
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted  # Runs on your local machine to access Ollama
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run Global Crawler with Local AI
+        run: python crawler.py
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add inventory.json
+          git commit -m "Auto Update: Global Inventory Data" || echo "No changes to commit"
+          git push
